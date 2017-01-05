@@ -1,0 +1,46 @@
+###############################################################
+# лочит тинки, не зачЄт
+#attiny13int.name=ATtiny13 @ 128 KHz, BOD 2.7 V
+#attiny13int.upload.using=arduino:arduinoisp
+#attiny13int.upload.speed=250 # important for not losing connection to a slow processor
+#attiny13int.bootloader.low_fuses=0x7B
+#attiny13int.bootloader.high_fuses=0xFB # BOD 2.7 ¬. по умолчанию FF
+#attiny13int.upload.maximum_size=1024
+#attiny13int.build.mcu=attiny13
+#attiny13int.build.f_cpu=128000L
+#attiny13int.build.core=core13
+
+###############################################################
+
+attiny13def.name=Attiny13 1.2 MHz (default)
+attiny13def.upload.using=arduino:arduinoisp
+attiny13def.upload.maximum_size=1024
+attiny13def.bootloader.low_fuses=0x6A
+attiny13def.bootloader.high_fuses=0xFF
+attiny13def.build.mcu=attiny13
+attiny13def.build.f_cpu=1200000L
+attiny13def.build.core=core13
+
+###############################################################
+
+attiny13at4.name=ATtiny13 4.8 MHz
+attiny13at4.upload.using=arduino:arduinoisp
+attiny13at4.bootloader.low_fuses=0x79 #### частота тиньки 4.8 м√ц ###
+attiny13at4.bootloader.high_fuses=0xFF #### FB - BOD 2.7 ¬. ###
+attiny13at4.upload.maximum_size=1024
+attiny13at4.build.mcu=attiny13
+attiny13at4.build.f_cpu=4800000L
+attiny13at4.build.core=core13
+
+###############################################################
+
+attiny13.name=ATtiny13 9.6 MHz
+attiny13.upload.using=arduino:arduinoisp
+attiny13.bootloader.low_fuses=0x7A #### частота тиньки 9.6 м√ц ###
+attiny13.bootloader.high_fuses=0xFF #### BOD 2.7 ¬. ###
+attiny13.upload.maximum_size=1024
+attiny13.build.mcu=attiny13
+attiny13.build.f_cpu=9600000L
+attiny13.build.core=core13
+
+###############################################################

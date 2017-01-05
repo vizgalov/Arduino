@@ -1,0 +1,380 @@
+# See: http://code.google.com/p/arduino/wiki/Platforms
+
+menu.flag=GCC_Flags
+
+###########################################################################
+
+#-U lfuse:w:0x2b:m -U hfuse:w:0x1f:m
+# int. Osc. 128 kHz; Start-up time PWRDWN/RESET: 14 CK + 64 ms; [CKSEL=11 SUT=10]
+# Divide clock by 8 internally; [CKDIV8=0]
+# Brown-out detection disabled
+# Preserve EEPROM memory through the Chip Erase cycle; [EESAVE=0]
+# Serial program downloading (SPI) enabled; [SPIEN=0]
+
+attiny13at16.name=Attiny13 @ 16 KHz ( watchdog oscillator; Preserve_EEPROM, BOD disable)
+attiny13at16.upload.tool=arduino:avrdude
+attiny13at16.upload.using=arduino:arduinoisp
+attiny13at16.upload.maximum_size=1024
+attiny13at16.upload.maximum_data_size=64
+attiny13at16.upload.speed=250
+
+attiny13at16.bootloader.tool=arduino:avrdude
+attiny13at16.bootloader.low_fuses=0x2B
+attiny13at16.bootloader.high_fuses=0xFF
+
+attiny13at16.build.mcu=attiny13
+attiny13at16.build.f_cpu=16000
+attiny13at16.build.core=core13
+
+##---------- GCC FLAGS --------------------------------------
+
+######## Probati -funsafe-math-optimizations ############
+
+attiny13at16.menu.flag.Os=Default
+attiny13at16.menu.flag.Os.compiler.c.extra_flags=
+attiny13at16.menu.flag.Os.compiler.c.elf.extra_flags=
+attiny13at16.menu.flag.Os.compiler.cpp.extra_flags=
+
+attiny13at16.menu.flag.Os_flto=Default -flto
+attiny13at16.menu.flag.Os_flto.compiler.c.extra_flags=-Wextra -flto
+attiny13at16.menu.flag.Os_flto.compiler.c.elf.extra_flags=-w -flto
+attiny13at16.menu.flag.Os_flto.compiler.cpp.extra_flags=-Wextra -flto
+
+attiny13at16.menu.flag.O1=-O1
+attiny13at16.menu.flag.O1.compiler.c.extra_flags=-O1
+attiny13at16.menu.flag.O1.compiler.c.elf.extra_flags=-O1
+attiny13at16.menu.flag.O1.compiler.cpp.extra_flags=-O1
+
+attiny13at16.menu.flag.O1_flto=-O1 -flto
+attiny13at16.menu.flag.O1_flto.compiler.c.extra_flags=-O1 -Wextra -flto
+attiny13at16.menu.flag.O1_flto.compiler.c.elf.extra_flags=-O1 -w -flto
+attiny13at16.menu.flag.O1_flto.compiler.cpp.extra_flags=-O1 -Wextra -flto
+
+attiny13at16.menu.flag.O3=-O3
+attiny13at16.menu.flag.O3.compiler.c.extra_flags=-O3
+attiny13at16.menu.flag.O3.compiler.c.elf.extra_flags=-O3
+attiny13at16.menu.flag.O3.compiler.cpp.extra_flags=-O3
+
+attiny13at16.menu.flag.O3_flto=-O3 -flto
+attiny13at16.menu.flag.O3_flto.compiler.c.extra_flags=-O3 -Wextra -flto
+attiny13at16.menu.flag.O3_flto.compiler.c.elf.extra_flags=-O3 -w -flto
+attiny13at16.menu.flag.O3_flto.compiler.cpp.extra_flags=-O3 -Wextra -flto
+
+###############################################################
+
+attiny13.name=Attiny13 @ 128 KHz (internal watchdog oscillator)
+attiny13.upload.tool=arduino:avrdude
+attiny13.upload.using=arduino:arduinoisp
+attiny13.upload.maximum_size=1024
+attiny13.upload.maximum_data_size=64
+attiny13.upload.speed=250
+
+attiny13.bootloader.tool=arduino:avrdude
+attiny13.bootloader.low_fuses=0x7B
+attiny13.bootloader.high_fuses=0xFF
+
+attiny13.build.mcu=attiny13
+attiny13.build.f_cpu=128000
+attiny13.build.core=core13
+
+##---------- GCC FLAGS --------------------------------------
+
+######## Probati -funsafe-math-optimizations ############
+
+attiny13.menu.flag.Os=Default
+attiny13.menu.flag.Os.compiler.c.extra_flags=
+attiny13.menu.flag.Os.compiler.c.elf.extra_flags=
+attiny13.menu.flag.Os.compiler.cpp.extra_flags=
+
+attiny13.menu.flag.Os_flto=Default -flto
+attiny13.menu.flag.Os_flto.compiler.c.extra_flags=-Wextra -flto
+attiny13.menu.flag.Os_flto.compiler.c.elf.extra_flags=-w -flto
+attiny13.menu.flag.Os_flto.compiler.cpp.extra_flags=-Wextra -flto
+
+attiny13.menu.flag.O1=-O1
+attiny13.menu.flag.O1.compiler.c.extra_flags=-O1
+attiny13.menu.flag.O1.compiler.c.elf.extra_flags=-O1
+attiny13.menu.flag.O1.compiler.cpp.extra_flags=-O1
+
+attiny13.menu.flag.O1_flto=-O1 -flto
+attiny13.menu.flag.O1_flto.compiler.c.extra_flags=-O1 -Wextra -flto
+attiny13.menu.flag.O1_flto.compiler.c.elf.extra_flags=-O1 -w -flto
+attiny13.menu.flag.O1_flto.compiler.cpp.extra_flags=-O1 -Wextra -flto
+
+attiny13.menu.flag.O3=-O3
+attiny13.menu.flag.O3.compiler.c.extra_flags=-O3
+attiny13.menu.flag.O3.compiler.c.elf.extra_flags=-O3
+attiny13.menu.flag.O3.compiler.cpp.extra_flags=-O3
+
+attiny13.menu.flag.O3_flto=-O3 -flto
+attiny13.menu.flag.O3_flto.compiler.c.extra_flags=-O3 -Wextra -flto
+attiny13.menu.flag.O3_flto.compiler.c.elf.extra_flags=-O3 -w -flto
+attiny13.menu.flag.O3_flto.compiler.cpp.extra_flags=-O3 -Wextra -flto
+
+###############################################################
+
+# 0x29 je sa Preserve EEPROM mem EESAVE=0 a 0x69 bez pa brise memoriju posle svakog flash-a
+# BOD Disabled (low 0x29 , high_fuses=0xff ) SLOW RISING POWER - with Preserve EEPROM
+# BOD Enabled ( low 0x21 , high 0xF9 ( za 4.3V ), high 0xFB ( za 2.7V )  ) with Preserve EEPROM
+
+attiny13at600.name=ATtiny13 @ 4.8MHz (int 4.8 MHz divided by 8-600 kHz,Preserve_EEPROM, BOD disable)
+attiny13at600.upload.tool=arduino:avrdude
+attiny13at600.upload.using=arduino:arduinoisp
+
+attiny13at600.bootloader.tool=arduino:avrdude
+attiny13at600.bootloader.low_fuses=0x29
+attiny13at600.bootloader.high_fuses=0xff
+
+attiny13at600.upload.maximum_size=1024
+attiny13at600.upload.maximum_data_size=64
+attiny13at600.upload.speed=9600
+attiny13at600.build.mcu=attiny13
+attiny13at600.build.f_cpu=600000
+attiny13at600.build.core=core13
+
+##---------- GCC FLAGS --------------------------------------
+
+######## Probati -funsafe-math-optimizations ############
+
+attiny13at600.menu.flag.Os=Default
+attiny13at600.menu.flag.Os.compiler.c.extra_flags=
+attiny13at600.menu.flag.Os.compiler.c.elf.extra_flags=
+attiny13at600.menu.flag.Os.compiler.cpp.extra_flags=
+
+attiny13at600.menu.flag.Os_flto=Default -flto
+attiny13at600.menu.flag.Os_flto.compiler.c.extra_flags=-Wextra -flto
+attiny13at600.menu.flag.Os_flto.compiler.c.elf.extra_flags=-w -flto
+attiny13at600.menu.flag.Os_flto.compiler.cpp.extra_flags=-Wextra -flto
+
+attiny13at600.menu.flag.O1=-O1
+attiny13at600.menu.flag.O1.compiler.c.extra_flags=-O1
+attiny13at600.menu.flag.O1.compiler.c.elf.extra_flags=-O1
+attiny13at600.menu.flag.O1.compiler.cpp.extra_flags=-O1
+
+attiny13at600.menu.flag.O1_flto=-O1 -flto
+attiny13at600.menu.flag.O1_flto.compiler.c.extra_flags=-O1 -Wextra -flto
+attiny13at600.menu.flag.O1_flto.compiler.c.elf.extra_flags=-O1 -w -flto
+attiny13at600.menu.flag.O1_flto.compiler.cpp.extra_flags=-O1 -Wextra -flto
+
+attiny13at600.menu.flag.O3=-O3
+attiny13at600.menu.flag.O3.compiler.c.extra_flags=-O3
+attiny13at600.menu.flag.O3.compiler.c.elf.extra_flags=-O3
+attiny13at600.menu.flag.O3.compiler.cpp.extra_flags=-O3
+
+attiny13at600.menu.flag.O3_flto=-O3 -flto
+attiny13at600.menu.flag.O3_flto.compiler.c.extra_flags=-O3 -Wextra -flto
+attiny13at600.menu.flag.O3_flto.compiler.c.elf.extra_flags=-O3 -w -flto
+attiny13at600.menu.flag.O3_flto.compiler.cpp.extra_flags=-O3 -Wextra -flto
+
+###############################################################
+
+# 0x39 je sa Preserve EEPROM mem EESAVE=0 a 0x69 bez pa brise memoriju posle svakog flash-a
+# BOD Disabled (low 0x39 , high_fuses=0xff ) SLOW RISING POWER - with Preserve EEPROM
+# BOD Enabled ( low 0x31 , high 0xF9 ( za 4.3V ), high 0xFB ( za 2.7V )  ) with Preserve EEPROM
+
+attiny13at48.name=ATtiny13 @ 4.8MHz (int 4.8 MHz clock , Preserve_EEPROM, , BOD - 2.7V)
+attiny13at48.upload.tool=arduino:avrdude
+attiny13at48.upload.using=arduino:arduinoisp
+
+attiny13at48.bootloader.tool=arduino:avrdude
+attiny13at48.bootloader.low_fuses=0x31
+attiny13at48.bootloader.high_fuses=0xFB
+
+attiny13at48.upload.maximum_size=1024
+attiny13at48.upload.maximum_data_size=64
+attiny13at48.upload.speed=57600
+attiny13at48.build.mcu=attiny13
+attiny13at48.build.f_cpu=4800000
+attiny13at48.build.core=core13
+
+##---------- GCC FLAGS --------------------------------------
+
+attiny13at48.menu.flag.Os=Default
+attiny13at48.menu.flag.Os.compiler.c.extra_flags=
+attiny13at48.menu.flag.Os.compiler.c.elf.extra_flags=
+attiny13at48.menu.flag.Os.compiler.cpp.extra_flags=
+
+attiny13at48.menu.flag.Os_flto=Default -flto
+attiny13at48.menu.flag.Os_flto.compiler.c.extra_flags=-Wextra -flto
+attiny13at48.menu.flag.Os_flto.compiler.c.elf.extra_flags=-w -flto
+attiny13at48.menu.flag.Os_flto.compiler.cpp.extra_flags=-Wextra -flto
+
+attiny13at48.menu.flag.O1=-O1
+attiny13at48.menu.flag.O1.compiler.c.extra_flags=-O1
+attiny13at48.menu.flag.O1.compiler.c.elf.extra_flags=-O1
+attiny13at48.menu.flag.O1.compiler.cpp.extra_flags=-O1
+
+attiny13at48.menu.flag.O1_flto=-O1 -flto
+attiny13at48.menu.flag.O1_flto.compiler.c.extra_flags=-O1 -Wextra -flto
+attiny13at48.menu.flag.O1_flto.compiler.c.elf.extra_flags=-O1 -w -flto
+attiny13at48.menu.flag.O1_flto.compiler.cpp.extra_flags=-O1 -Wextra -flto
+
+attiny13at48.menu.flag.O3=-O3
+attiny13at48.menu.flag.O3.compiler.c.extra_flags=-O3
+attiny13at48.menu.flag.O3.compiler.c.elf.extra_flags=-O3
+attiny13at48.menu.flag.O3.compiler.cpp.extra_flags=-O3
+
+attiny13at48.menu.flag.O3_flto=-O3 -flto
+attiny13at48.menu.flag.O3_flto.compiler.c.extra_flags=-O3 -Wextra -flto
+attiny13at48.menu.flag.O3_flto.compiler.c.elf.extra_flags=-O3 -w -flto
+attiny13at48.menu.flag.O3_flto.compiler.cpp.extra_flags=-O3 -Wextra -flto
+
+###############################################################
+
+# 0x2A je sa Preserve EEPROM mem EESAVE=0 a 0x6A bez pa brise memoriju posle svakog flash-a
+# BOD Disabled (low 0x2A , high_fuses=0xff ) SLOW RISING POWER - with Preserve EEPROM
+# BOD Enabled ( low 0x22(startup_time 14CK+0ms) ,low 0x2A(startup_time 14CK+64ms), high 0xF9 ( za 4.3V ), high 0xFB ( za 2.7V )  ) with Preserve EEPROM
+
+attiny13at1200.name=ATtiny13 @ 9.6MHz (int 9.6 MHz divided by 8-1.2 MHz,Preserve_EEPROM, BOD - 2.7V)
+attiny13at1200.upload.tool=arduino:avrdude
+
+attiny13at1200.bootloader.tool=arduino:avrdude
+attiny13at1200.bootloader.low_fuses=0x2A
+attiny13at1200.bootloader.high_fuses=0xFB
+
+attiny13at1200.upload.maximum_size=1024
+attiny13at1200.upload.maximum_data_size=64
+attiny13at1200.upload.speed=9600
+attiny13at1200.build.mcu=attiny13
+attiny13at1200.build.f_cpu=1200000
+attiny13at1200.build.core=core13
+
+##---------- GCC FLAGS --------------------------------------
+
+attiny13at1200.menu.flag.Os=Default
+attiny13at1200.menu.flag.Os.compiler.c.extra_flags=
+attiny13at1200.menu.flag.Os.compiler.c.elf.extra_flags=
+attiny13at1200.menu.flag.Os.compiler.cpp.extra_flags=
+
+attiny13at1200.menu.flag.Os_flto=Default -flto
+attiny13at1200.menu.flag.Os_flto.compiler.c.extra_flags=-Wextra -flto
+attiny13at1200.menu.flag.Os_flto.compiler.c.elf.extra_flags=-w -flto
+attiny13at1200.menu.flag.Os_flto.compiler.cpp.extra_flags=-Wextra -flto
+
+attiny13at1200.menu.flag.O1=-O1
+attiny13at1200.menu.flag.O1.compiler.c.extra_flags=-O1
+attiny13at1200.menu.flag.O1.compiler.c.elf.extra_flags=-O1
+attiny13at1200.menu.flag.O1.compiler.cpp.extra_flags=-O1
+
+attiny13at1200.menu.flag.O1_flto=-O1 -flto
+attiny13at1200.menu.flag.O1_flto.compiler.c.extra_flags=-O1 -Wextra -flto
+attiny13at1200.menu.flag.O1_flto.compiler.c.elf.extra_flags=-O1 -w -flto
+attiny13at1200.menu.flag.O1_flto.compiler.cpp.extra_flags=-O1 -Wextra -flto
+
+attiny13at1200.menu.flag.O3=-O3
+attiny13at1200.menu.flag.O3.compiler.c.extra_flags=-O3
+attiny13at1200.menu.flag.O3.compiler.c.elf.extra_flags=-O3
+attiny13at1200.menu.flag.O3.compiler.cpp.extra_flags=-O3
+
+attiny13at1200.menu.flag.O3_flto=-O3 -flto
+attiny13at1200.menu.flag.O3_flto.compiler.c.extra_flags=-O3 -Wextra -flto
+attiny13at1200.menu.flag.O3_flto.compiler.c.elf.extra_flags=-O3 -w -flto
+attiny13at1200.menu.flag.O3_flto.compiler.cpp.extra_flags=-O3 -Wextra -flto
+
+###############################################################
+
+# 0x3A je sa Preserve EEPROM mem EESAVE=0 a 0x7a bez pa brise memoriju posle svakog flash-a
+# BOD Disabled (low 0x3A , high_fuses=0xff) SLOW RISING POWER - with Preserve EEPROM
+# BOD Enabled ( low 0x3A(startup_time 14CK+64ms), low 0x32(startup_time 14CK+0ms) , high 0xF9 ( za 4.3V ), high 0xFB ( za 2.7V )  ) with Preserve EEPROM
+
+attiny13at9m.name=ATtiny13 @ 9.6MHz (internal 9.6 MHz clock, Preserve EEPROM, BOD disable)
+attiny13at9m.upload.tool=arduino:avrdude
+attiny13at9m.upload.using=arduino:usbtiny
+
+attiny13at9m.bootloader.tool=arduino:avrdude
+attiny13at9m.bootloader.low_fuses=0x3A
+attiny13at9m.bootloader.high_fuses=0xff
+
+attiny13at9m.upload.maximum_size=1024
+attiny13at9m.upload.maximum_data_size=64
+attiny13at9m.upload.speed=57600
+attiny13at9m.build.mcu=attiny13
+attiny13at9m.build.f_cpu=9600000
+attiny13at9m.build.core=core13
+
+##---------- GCC FLAGS --------------------------------------
+
+attiny13at9m.menu.flag.Os=Default
+attiny13at9m.menu.flag.Os.compiler.c.extra_flags=
+attiny13at9m.menu.flag.Os.compiler.c.elf.extra_flags=
+attiny13at9m.menu.flag.Os.compiler.cpp.extra_flags=
+
+attiny13at9m.menu.flag.Os_flto=Default -flto
+attiny13at9m.menu.flag.Os_flto.compiler.c.extra_flags=-Wextra -flto
+attiny13at9m.menu.flag.Os_flto.compiler.c.elf.extra_flags=-w -flto
+attiny13at9m.menu.flag.Os_flto.compiler.cpp.extra_flags=-Wextra -flto
+
+attiny13at9m.menu.flag.O1=-O1
+attiny13at9m.menu.flag.O1.compiler.c.extra_flags=-O1
+attiny13at9m.menu.flag.O1.compiler.c.elf.extra_flags=-O1
+attiny13at9m.menu.flag.O1.compiler.cpp.extra_flags=-O1
+
+attiny13at9m.menu.flag.O1_flto=-O1 -flto
+attiny13at9m.menu.flag.O1_flto.compiler.c.extra_flags=-O1 -Wextra -flto
+attiny13at9m.menu.flag.O1_flto.compiler.c.elf.extra_flags=-O1 -w -flto
+attiny13at9m.menu.flag.O1_flto.compiler.cpp.extra_flags=-O1 -Wextra -flto
+
+attiny13at9m.menu.flag.O3=-O3
+attiny13at9m.menu.flag.O3.compiler.c.extra_flags=-O3
+attiny13at9m.menu.flag.O3.compiler.c.elf.extra_flags=-O3
+attiny13at9m.menu.flag.O3.compiler.cpp.extra_flags=-O3
+
+attiny13at9m.menu.flag.O3_flto=-O3 -flto
+attiny13at9m.menu.flag.O3_flto.compiler.c.extra_flags=-O3 -Wextra -flto
+attiny13at9m.menu.flag.O3_flto.compiler.c.elf.extra_flags=-O3 -w -flto
+attiny13at9m.menu.flag.O3_flto.compiler.cpp.extra_flags=-O3 -Wextra -flto
+
+###############################################################
+
+# 0x3A je sa Preserve EEPROM mem EESAVE=0 a 0x7a bez pa brise memoriju posle svakog flash-a
+# BOD Disabled (low 0x3A , high_fuses=0xff) SLOW RISING POWER - with Preserve EEPROM
+# BOD Enabled ( low 0x32(startup_time 14CK+0ms) , high 0xF9 ( za 4.3V ), high 0xFB ( za 2.7V )  ) with Preserve EEPROM
+
+attiny13at9m_bod.name=ATtiny13 @ 9.6MHz (internal 9.6 MHz clock, Preserve EEPROM, BOD - 2.7V )
+attiny13at9m_bod.upload.tool=arduino:avrdude
+attiny13at9m_bod.upload.using=arduino:usbtiny
+
+attiny13at9m_bod.bootloader.tool=arduino:avrdude
+attiny13at9m_bod.bootloader.low_fuses=0x32
+attiny13at9m_bod.bootloader.high_fuses=0xFB
+
+attiny13at9m_bod.upload.maximum_size=1024
+attiny13at9m_bod.upload.maximum_data_size=64
+attiny13at9m_bod.upload.speed=57600
+attiny13at9m_bod.build.mcu=attiny13
+attiny13at9m_bod.build.f_cpu=9600000
+attiny13at9m_bod.build.core=core13
+
+##---------- GCC FLAGS --------------------------------------
+
+attiny13at9m_bod.menu.flag.Os=Default
+attiny13at9m_bod.menu.flag.Os.compiler.c.extra_flags=
+attiny13at9m_bod.menu.flag.Os.compiler.c.elf.extra_flags=
+attiny13at9m_bod.menu.flag.Os.compiler.cpp.extra_flags=
+
+attiny13at9m_bod.menu.flag.Os_flto=Default -flto
+attiny13at9m_bod.menu.flag.Os_flto.compiler.c.extra_flags=-Wextra -flto
+attiny13at9m_bod.menu.flag.Os_flto.compiler.c.elf.extra_flags=-w -flto
+attiny13at9m_bod.menu.flag.Os_flto.compiler.cpp.extra_flags=-Wextra -flto
+
+attiny13at9m_bod.menu.flag.O1=-O1
+attiny13at9m_bod.menu.flag.O1.compiler.c.extra_flags=-O1
+attiny13at9m_bod.menu.flag.O1.compiler.c.elf.extra_flags=-O1
+attiny13at9m_bod.menu.flag.O1.compiler.cpp.extra_flags=-O1
+
+attiny13at9m_bod.menu.flag.O1_flto=-O1 -flto
+attiny13at9m_bod.menu.flag.O1_flto.compiler.c.extra_flags=-O1 -Wextra -flto
+attiny13at9m_bod.menu.flag.O1_flto.compiler.c.elf.extra_flags=-O1 -w -flto
+attiny13at9m_bod.menu.flag.O1_flto.compiler.cpp.extra_flags=-O1 -Wextra -flto
+
+attiny13at9m_bod.menu.flag.O3=-O3
+attiny13at9m_bod.menu.flag.O3.compiler.c.extra_flags=-O3
+attiny13at9m_bod.menu.flag.O3.compiler.c.elf.extra_flags=-O3
+attiny13at9m_bod.menu.flag.O3.compiler.cpp.extra_flags=-O3
+
+attiny13at9m_bod.menu.flag.O3_flto=-O3 -flto
+attiny13at9m_bod.menu.flag.O3_flto.compiler.c.extra_flags=-O3 -Wextra -flto
+attiny13at9m_bod.menu.flag.O3_flto.compiler.c.elf.extra_flags=-O3 -w -flto
+attiny13at9m_bod.menu.flag.O3_flto.compiler.cpp.extra_flags=-O3 -Wextra -flto
+
+###############################################################

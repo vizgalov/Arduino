@@ -1,0 +1,22 @@
+##############################################################
+# Additional definitions for Arduino
+# Author: Sudar <http://hardwarefun.com>
+##############################################################
+# Definitions for ATmega 8MHz 
+##############################################################
+atmega16-8.name=Atmega16 (internal 8MHz clock)
+
+atmega16-8.upload.protocol=stk500v1
+atmega16-8.upload.maximum_size=14336
+atmega16-8.upload.speed=19200
+
+atmega16-8.bootloader.low_fuses=0x84
+atmega16-8.bootloader.high_fuses=0x99
+
+atmega16-8.build.mcu=atmega16
+atmega16-8.build.f_cpu=8000000L
+atmega16-8.build.core=arduino:arduino
+atmega16-8.build.variant=mega16
+
+##############################################################
+# TODO: Add definitions for ATmega external clock 
